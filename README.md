@@ -1,9 +1,12 @@
 # Yolov-4
 Yolo v4 using TensorFlow 2.x
 
-1. Build the Tensorflow model
+1. Build the Tensorflow model.
+
 The model is composed of 161 layers.
+
 Most of them are type Conv2D, there are also 3 MaxPool2D and one UpSampling2D.
+
 In addtion there are few shorcuts with some concatenate.
 
 2 activation methods are used, LeakyReLU with alpha=0.1 and Mish with a threshold = 20.0. I habe defined MIsh as a custome object as mish is not yet included in the core TF 2.0.
