@@ -1,9 +1,11 @@
 # Yolov-4
 Yolo v4 using TensorFlow 2.x
+
 1. Build the Tensorflow model
 The model is composed of 161 layers.
 Most of them are type Conv2D, there are also 3 MaxPool2D and one UpSampling2D.
 In addtion there are few shorcuts with some concatenate.
+
 2 activation methods are used, LeakyReLU with alpha=0.1 and Mish with a threshold = 20.0. I habe defined MIsh as a custome object as mish is not yet included in the core TF 2.0.
 The  specifc Yolo layers yolo_139, yolo_150 and  yolo_161 are not defined in my tensorflow model because they handle cutomized processing. So I have defined no activation for the last yolo layers and I have build the prcessing in specifig python functions run after the model predict.
 
@@ -20,7 +22,7 @@ The model is saved after buiding it anf retreiving the weights
 4.Load the model
 The model previuosly saved is loaded and then ready to be used.
 
-4.Pre-processing
+5.Pre-processing
 During the pre-processing the labels and the image are loaded.
 The image is resized in the Yolo format 608*608 using interpolation = 'bilinear'. 
 As usual, the values if the pixels are divided by 255.
@@ -30,7 +32,7 @@ the model is run with the resized image as input, shape=(1,608,608,3)
 the models provided 3 outcomes, layers 139, 150 and 161 with the shapes respectively (1, 76, 76, 255), (1, 38, 38, 255), (1, 19, 19, 255)
 The number of channels 255 = ( bx,by,bh,bw, pc + 80 classes ) * 3 anchor boxes
 
-5. Compute the yolo layers
+6. Compute the yolo layers
 As explaned before, the 3 final Yolo layes are computed outsire the TF model by a pytho, function decode_netout.
 This function 
 a. apply sigmoid activation on everything except bh and bw.
@@ -43,10 +45,10 @@ c. get the boxes parameters for prediction (pc) > 0.25
                 classes = classes*pc
  the anchors defined for each layer and channel are: [ [12, 16, 19, 36, 40, 28],[36, 75, 76, 55, 72, 146],[142, 110, 192, 243, 459, 401]]
  
- 6.Corect the boxes according the inital size of the image.
+ 7.Corect the boxes according the inital size of the image.
  
- 7.Supress the non Maximal boxes
+ 8.Supress the non Maximal boxes
  
- 8. Get the details of the detected objects for a threshold > 0.6
+ 9. Get the details of the detected objects for a threshold > 0.6
  
- 9. Draw the result
+ 0. Draw the result
