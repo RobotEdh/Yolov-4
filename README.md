@@ -1,7 +1,7 @@
 # Yolov-4
 Yolo v4 using TensorFlow 2.x
 
-1. Build the Tensorflow model.
+# # Build the Tensorflow model.
 
 The model is composed of 161 layers.
 
