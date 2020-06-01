@@ -34,5 +34,19 @@ The number of channels 255 = ( bx,by,bh,bw, pc + 80 classes ) * 3 anchor boxes
 As explaned before, the 3 final Yolo layes are computed outsire the TF model by a pytho, function decode_netout.
 This function 
 a. apply sigmoid activation on everything except bh and bw.
-b. scale bx and by using factors acoording the layer scales_x_y = [1.2, 1.1, 1.05]
-
+b. scale bx and by using factors acoording the layer scales_x_y defined for each layer= [1.2, 1.1, 1.05]
+c. get the boxes parameters for prediction (pc) > 0.25
+                x = (col + x) / grid_w # center position, unit: image width
+                y = (row + y) / grid_h # center position, unit: image height
+                w = anchors * np.exp(w) / network width (608) 
+                h = anchors * np.exp(h) / network height (608)
+                classes = classes*pc
+ the anchors defined for each layer and channel are: [ [12, 16, 19, 36, 40, 28],[36, 75, 76, 55, 72, 146],[142, 110, 192, 243, 459, 401]]
+ 
+ 6.Corect the boxes according the inital size of the image.
+ 
+ 7.Supress the non Maximal boxes
+ 
+ 8. Get the details of the detected objects for a threshold > 0.6
+ 
+ 9. Draw the result
