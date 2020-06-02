@@ -38,7 +38,7 @@ Instead of adding Batch normalisation layers into the model, I have directly nor
  - bias = bias - scale  * mean / (np.sqrt(var + 0.00001)
  - weights = weights* scale / (np.sqrt(var + 0.00001))
 
-As theses parameters as stored in the Caffe mode, I have applied several transformation to map the TF requirements.
+As these parameters as stored in the Caffe mode, I have applied several transformation to map the TF requirements.
 
 ## 3. Save the model
 The model is saved in a h5 file after building it and computing the weights.
@@ -48,6 +48,8 @@ The model previously saved is loaded from the h5 file and then ready to be used.
 
 ## 5. Pre-processing
 During the pre-processing the 80 labels and the image to predict are loaded.
+
+The labels are in the file *coco_classes.txt*.
 
 The image is resized in the Yolo format 608*608 using interpolation = 'bilinear'. 
 
