@@ -58,7 +58,9 @@ The steps of this function are the following:
 - scale bx and by using the factor *scales_x_y* defined for each Yolo layer. (bx,by)=(bx,by)*scales_x_y - 0.5*(scales_x_y - 1.0)
 
  -output layer 139 (76,76,255):  1.2
+ 
  -output layer 150 (38,7386,255):  1.1
+ 
  -output layer 161 (76,76,255):  1.05
 
 - get the boxes parameters for prediction (pc) > 0.25
