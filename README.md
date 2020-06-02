@@ -5,13 +5,13 @@ Yolo v4 using TensorFlow 2.x
 
 The model is composed of 161 layers.
 
-Most of them are type Conv2D, there are also 3 MaxPool2D and one UpSampling2D.
+Most of them are Conv2D, there are also 3 MaxPool2D and one UpSampling2D.
 
 In addtion there are few shorcuts with some concatenate.
 
-2 activation methods are used, LeakyReLU with alpha=0.1 and Mish with a threshold = 20.0. I have defined MIsh as a custom object as mish is not  included in the core TF release yet.
+2 activation methods are used, LeakyReLU with alpha=0.1 and Mish with a threshold = 20.0. I have defined Mish as a custom object as Mish is not included in the core TF release yet.
 
-The  specifc Yolo layers yolo_139, yolo_150 and  yolo_161 are not defined in my tensorflow model because they handle cutomized processing. So I have defined no activation for the last yolo layers and I have build the corresponding processing in a specifig python function run after the model prediction.
+The specifc Yolo output layers yolo_139, yolo_150 and yolo_161 are not defined in my Tensorflow model because they handle cutomized processing. So I have defined no activation for these layers but I have built the corresponding processing in a specifig python function run after the model prediction.
 
 ## 2. Get and compute the weights
 The yolo weight have been retreived from the xxx. The file contain the kernel weights but also the biases and the Batch Normalisation parameters scale, mean and var.
