@@ -9,8 +9,13 @@ But I have made several changes due to the new features added by the release 4 o
 
 All the steps are included in the jupyter notebook **5-Deep-Neural-Network-YoloV4_tf.ipynb**
 
+The release numbers are:
 
-## 1.Build the Tensorflow model
+- TensorFlow version: 2.1.0
+- Keras version: 2.2.4-tf
+
+
+## 1.Build the TensorFlow model
 
 The model is composed of 161 layers.
 
@@ -22,7 +27,7 @@ In addtion there are few shorcuts with some concatenate.
 
 The specifc Yolo output layers *yolo_139*, *yolo_150* and *yolo_161* are not defined in my Tensorflow model because they handle cutomized processing. So I have defined no activation for these layers but I have built the corresponding processing in a specifig python function run after the model prediction.
 
-## 2. Get and compute the weights
+## 2.Get and compute the weights
 The yolo weight have been retreived from https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v3_optimal/yolov4.weights.
 
 The file contain the kernel weights but also the biases and the Batch Normalisation parameters scale, mean and var.
@@ -34,7 +39,7 @@ Instead of adding Batch normalisation layers into the model, I have directly nor
 
 As theses parameters as stored in the Caffe mode, I have applied several transformation to map the TF requirements.
 
-## 3. Save the model
+## 3.Save the model
 The model is saved in a h5 file after building it and computing the weights.
 
 ## 4.Load the model
@@ -59,7 +64,7 @@ The number of channels is 255 = ( bx,by,bh,bw,pc + 80 classes ) * 3 anchor boxes
  - output layer 161 (76,76,255):   (142, 110), (192, 243), (459, 40)
 
 
-## 7. Compute the Yolo layers
+## 7.Compute the Yolo layers
 As explained before, the 3 final Yolo layers are computed outside the TF model by the python function *decode_netout*.
 
 The steps of this function are the following:
@@ -83,10 +88,10 @@ The steps of this function are the following:
   - classes = classes*pc
  
  
- ## 8. Correct the boxes according the inital size of the image
+ ## 8.Correct the boxes according the inital size of the image
  
- ## 9. Suppress the non Maximal boxes
+ ## 9.Suppress the non Maximal boxes
  
- ## 10. Get the details of the detected objects for a threshold > 0.6
+ ## 10.Get the details of the detected objects for a threshold > 0.6
  
- ## 11. Draw the result
+ ## 11.Draw the result
