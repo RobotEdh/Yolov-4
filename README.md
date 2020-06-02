@@ -46,7 +46,7 @@ The model is saved in a h5 file after building it and computing the weights.
 The model previously saved is loaded from the h5 file and then ready to be used.
 
 ## 5.Pre-processing
-During the pre-processing the labels and the image to predict are loaded.
+During the pre-processing the 80 labels and the image to predict are loaded.
 
 The image is resized in the Yolo format 608*608 using interpolation = 'bilinear'. 
 
