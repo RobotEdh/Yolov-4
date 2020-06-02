@@ -60,9 +60,9 @@ The model provides 3 output layers 139, 150 and 161 with the shapes respectively
 The number of channels is 255 = ( bx,by,bh,bw,pc + 80 classes ) * 3 anchor boxes, where *(bx,by,bh,bw)* define the position and size of the box, and *pc* is the probability to find an object in the box.
 
 3 anchor boxes per Yolo output layers are defined: 
- - output layer 139 (76,76,255):   (12, 16), (19, 36), (40, 28)
- - output layer 150 (38,7386,255): (36, 75), (76, 55), (72, 146)
- - output layer 161 (76,76,255):   (142, 110), (192, 243), (459, 40)
+ - output layer 139 (76,76,255): (12, 16), (19, 36), (40, 28)
+ - output layer 150 (38,38,255): (36, 75), (76, 55), (72, 146)
+ - output layer 161 (19,19,255): (142, 110), (192, 243), (459, 40)
 
 
 ## 7. Compute the Yolo layers
@@ -76,15 +76,15 @@ The steps of this function are the following:
 
    - (bx,by)=(bx,by)scales_x_y - 0.5(scales_x_y - 1.0)
 
-- get the boxes parameters for prediction (pc) > 0.25
+- get the boxes parameters for prediction *pc* > 0.25
 
-  - x = (col + x) / grid_w # center position, unit: image width
+  - x = (col + x) / grid_w (=76, 38 or 19)
           
-  - y = (row + y) / grid_h # center position, unit: image height
+  - y = (row + y) / grid_h (=76, 38 or 19)
                 
-  - w = anchors * np.exp(w) / network width (608) 
+  - w = anchors_w * exp(w) / network width (=608) 
                 
-  - h = anchors * np.exp(h) / network height (608)
+  - h = anchors_h * exp(h) / network height (=608)
                 
   - classes = classes*pc
  
