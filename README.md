@@ -1,6 +1,15 @@
 # Yolov-4
 Yolo v4 using TensorFlow 2.x
 
+This Tensorflow adaptation of the release 4 of the famous deep network Yolo is based on the original Yolo source code in C++ that you can find here:https://github.com/pjreddie/darknet and https://github.com/AlexeyAB/darknet
+
+The method to adapt this deep network is based on the method used by *Jason Brownlee* for the previous release v3 and presented here https://machinelearningmastery.com/how-to-perform-object-detection-with-yolov3-in-keras/
+
+But I have made several changes due to the new features added by the release 4 of Yolo.
+
+All the steps are included in the jupyter notebook **5-Deep-Neural-Network-YoloV4_tf.ipynb**
+
+
 ## 1.Build the Tensorflow model
 
 The model is composed of 161 layers.
@@ -14,7 +23,9 @@ In addtion there are few shorcuts with some concatenate.
 The specifc Yolo output layers *yolo_139*, *yolo_150* and *yolo_161* are not defined in my Tensorflow model because they handle cutomized processing. So I have defined no activation for these layers but I have built the corresponding processing in a specifig python function run after the model prediction.
 
 ## 2. Get and compute the weights
-The yolo weight have been retreived from the xxx. The file contain the kernel weights but also the biases and the Batch Normalisation parameters scale, mean and var.
+The yolo weight have been retreived from https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v3_optimal/yolov4.weights.
+
+The file contain the kernel weights but also the biases and the Batch Normalisation parameters scale, mean and var.
 
 Instead of adding Batch normalisation layers into the model, I have directly normalized the weights and biases with the values of scale, mean and var.
 
