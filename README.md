@@ -7,7 +7,7 @@ The method to adapt this deep network is based on the method used by *Jason Brow
 
 But I have made several changes due to the new features added by the release 4 of Yolo.
 
-All the steps are included in the jupyter notebook **5-Deep-Neural-Network-YoloV4_tf.ipynb**
+All the steps are included in the jupyter notebook **YoloV4_tf.ipynb**
 
 The release numbers are:
 
