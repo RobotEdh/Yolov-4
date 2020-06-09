@@ -81,7 +81,7 @@ The steps of this function are the following:
 - get the boxes parameters for prediction *pc* > 0.25
 
   - x = (col + x) / grid_w (=76, 38 or 19)
-          
+         
   - y = (row + y) / grid_h (=76, 38 or 19)
                 
   - w = anchors_w * exp(w) / network width (=608) 
@@ -98,3 +98,10 @@ The steps of this function are the following:
  ## 10. Get the details of the detected objects for a threshold > 0.6
  
  ## 11. Draw the result
+ 
+ 
+ 
+# Yolov-3-Tiny
+Tiny yelease of Yolo V3 using TensorFlow 2.x
+
+Same logc than Yolo v4 but with less layers (26) and only 2 output layers.
