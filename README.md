@@ -105,3 +105,5 @@ The steps of this function are the following:
 Tiny release of Yolo V3 using TensorFlow 2.x
 
 Same logic than Yolo v4 but with only 26 layers and 2 output layers.
+
+All the steps are included in the jupyter notebook **YoloV3-tiny_tf.ipynb**
