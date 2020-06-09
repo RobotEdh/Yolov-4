@@ -102,6 +102,6 @@ The steps of this function are the following:
  
  
 # Yolov-3-Tiny
-Tiny yelease of Yolo V3 using TensorFlow 2.x
+Tiny release of Yolo V3 using TensorFlow 2.x
 
-Same logc than Yolo v4 but with less layers (26) and only 2 output layers.
+Same logic than Yolo v4 but with only 26 layers and 2 output layers.
