@@ -9,12 +9,14 @@ But I have made several changes due to the new features added by the release 4 o
 
 All the steps are included in the jupyter notebook **YoloV4_tf.ipynb**
 
+In addition, I have defined the **loss function** so you can train the model as described later. The corresponding steps are included in the jupyter notebook **YoloV4_Train_tf.ipynb**
+
 The release numbers are:
 
 - TensorFlow version: 2.1.0
 - Keras version: 2.2.4-tf
 
-**The steps to use Yolo-V4 with TensorFlow 2.x are the following:**
+# The steps to use Yolo-V4 with TensorFlow 2.x are the following
 
 ## 1. Build the TensorFlow model
 
@@ -81,7 +83,7 @@ The steps of this function are the following:
 - get the boxes parameters for prediction *pc* > 0.25
 
   - x = (col + x) / grid_w (=76, 38 or 19)
-          
+         
   - y = (row + y) / grid_h (=76, 38 or 19)
                 
   - w = anchors_w * exp(w) / network width (=608) 
@@ -98,3 +100,72 @@ The steps of this function are the following:
  ## 10. Get the details of the detected objects for a threshold > 0.6
  
  ## 11. Draw the result
+ 
+ 
+# The steps to train Yolo-V4 with TensorFlow 2.x are the following
+
+## 1. Build the TensorFlow model
+
+The model is composed of 161 layers.
+
+Most of them are *Conv2D*, there are also 3 *MaxPool2D* and one *UpSampling2D*.
+
+In addtion there are few shorcuts with some concatenate.
+
+Two activation methods are used, *LeakyReLU* with alpha=0.1 and *Mish* with a threshold = 20.0. I have defined Mish as a custom object as Mish is not included in the core TF release yet.
+
+The specifc Yolo output layers *yolo_139*, *yolo_150* and *yolo_161* are not defined in my Tensorflow model because they handle cutomized processing. So I have defined no activation for these layers but I have built the corresponding processing in a specifig python function run after the model prediction.
+
+## 2. Get and compute the weights (you can skip this part if you want to train a empty model)
+The yolo weight have been retreived from https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v3_optimal/yolov4.weights.
+
+The file contain the kernel weights but also the biases and the Batch Normalisation parameters scale, mean and var.
+
+Instead of adding Batch normalisation layers into the model, I have directly normalized the weights and biases with the values of scale, mean and var.
+
+ - bias = bias - scale  * mean / (np.sqrt(var + 0.00001)
+ - weights = weights* scale / (np.sqrt(var + 0.00001))
+
+As these parameters as stored in the Caffe mode, I have applied several transformation to map the TF requirements.
+
+## 3. Save the model
+The model is saved in a h5 file after building it and computing the weights.
+
+## 4. Load the model
+The model previously saved is loaded from the h5 file and then ready to be used.
+
+## 5. Get the Pascal VOC dataset
+I have used the Pascal VOC dataset to train the model.
+
+You can find the dataset here: https://pjreddie.com/projects/pascal-voc-dataset-mirror/ in order to get the images and the corresponding annotations in xml format.
+
+## 5. Build the labels files for VOC train dataset
+One label file per image and per box is created (3 boxes are defined in Yolo4). The label file contains the position and the size of the box, the probability to find an object in the box and the class id of the object. The file contains one line per object in the image.
+
+## 6. Build the labels files for VOC validate dataset
+Same thing than above but for the dataset used to validate the training.
+
+## 7. Compute the data for training
+Train data are created based on the Label files previously created and the images.
+You can define how many data do you want to train.
+
+## 8. Compute the data for validation
+Same thing than above but for the data used to validate the training.
+
+## 9. Choose the optimizer
+Several optimizers are available in Tensorflow: SGD, RMSprop, Adam...
+
+## 10. Fit the model including validation data
+Fit the model using all the Tensorflow features you want.
+Warning: Training can takes a lot of time if you train a huge number of data!
+(it takes 3 minutes to train and validate 4 images on my cpu)
+
+
+ 
+ 
+# Yolov-3-Tiny
+Tiny release of Yolo V3 using TensorFlow 2.x
+
+Same logic than Yolo v4 but with only 26 layers and 2 output layers.
+
+All the steps are included in the jupyter notebook **YoloV3-tiny_tf.ipynb**
