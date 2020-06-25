@@ -1,5 +1,5 @@
-# Yolov-4
-Yolo v4 using TensorFlow 2.x
+# Yolo v4 and Yolo v3 Tiny
+Yolo v4 & Yolo v3 Tiny using TensorFlow 2.x
 
 This Tensorflow adaptation of the release 4 of the famous deep network Yolo is based on the original Yolo source code in C++ that you can find here: https://github.com/pjreddie/darknet and https://github.com/AlexeyAB/darknet
 
@@ -178,4 +178,4 @@ Tiny release of Yolo V3 using TensorFlow 2.x
 
 Same logic than Yolo v4 but with only 26 layers and 2 output layers.
 
-All the steps are included in the jupyter notebook **YoloV3-tiny_tf.ipynb**
+All the steps are included in the jupyter notebooks  **YoloV3-tiny_tf.ipynb** and **YoloV3-tiny_Train_tf.ipynb**
