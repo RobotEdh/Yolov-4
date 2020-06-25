@@ -140,13 +140,18 @@ I have used the Pascal VOC dataset to train the model.
 You can find the dataset here: https://pjreddie.com/projects/pascal-voc-dataset-mirror/ in order to get the images and the corresponding annotations in xml format.
 
 ## 5. Build the labels files for VOC train dataset
-One label file per image and per box is created (3 boxes are defined in Yolo4). The label file contains the position and the size of the box, the probability to find an object in the box and the class id of the object. The file contains one line per object in the image.
+One label file per image and per box is created (3 boxes are defined in Yolo4).
+
+The label file contains the position and the size of the box, the probability to find an object in the box and the class id of the object.
+
+This file contains one line per object in the image.
 
 ## 6. Build the labels files for VOC validate dataset
 Same thing than above but for the dataset used to validate the training.
 
 ## 7. Compute the data for training
 Train data are created based on the Label files previously created and the images.
+
 You can define how many data do you want to train.
 
 ## 8. Compute the data for validation
@@ -157,8 +162,13 @@ Several optimizers are available in Tensorflow: SGD, RMSprop, Adam...
 
 ## 10. Fit the model including validation data
 Fit the model using all the Tensorflow features you want.
+
 Warning: Training can takes a lot of time if you train a huge number of data!
+
 (it takes 3 minutes to train and validate 4 images on my cpu)
+
+
+
 
 
  
