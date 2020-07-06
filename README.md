@@ -139,7 +139,7 @@ The model is saved in a h5 file after building it and computing the weights.
 The model previously saved is loaded from the h5 file.
 
 ## 5. Freeze the backbone
-You need to define until which layer you want to freese the modle. To free the backbone Yolo v4, set fine_tune_at = "convn_136"
+You need to define until which layer you want to freese the model. To free the backbone Yolo v4, set fine_tune_at = "convn_136"
 
 ## 6. Get the Pascal VOC dataset
 I have used the Pascal VOC dataset to train the model.
