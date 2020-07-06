@@ -35,10 +35,12 @@ The yolo weight have been retreived from https://github.com/AlexeyAB/darknet/rel
 
 The file contain the kernel weights but also the biases and the Batch Normalisation parameters scale, mean and var.
 
-Instead of adding Batch normalisation layers into the model, I have directly normalized the weights and biases with the values of scale, mean and var.
+Instead of using Batch normalisation layers into the model, I have directly normalized the weights and biases with the values of scale, mean and var.
 
  - bias = bias - scale  * mean / (np.sqrt(var + 0.00001)
  - weights = weights* scale / (np.sqrt(var + 0.00001))
+
+I have kept the Batch normalisation layers in the model for training purpose. By defaut, the corresponding parameters are not applicable (weight = 1 and bias = 0) but they are updated if you train the model.
 
 As these parameters as stored in the Caffe mode, I have applied several transformation to map the TF requirements.
 
@@ -121,10 +123,12 @@ The yolo weight have been retreived from https://github.com/AlexeyAB/darknet/rel
 
 The file contain the kernel weights but also the biases and the Batch Normalisation parameters scale, mean and var.
 
-Instead of adding Batch normalisation layers into the model, I have directly normalized the weights and biases with the values of scale, mean and var.
+Instead of using Batch normalisation layers into the model, I have directly normalized the weights and biases with the values of scale, mean and var.
 
  - bias = bias - scale  * mean / (np.sqrt(var + 0.00001)
  - weights = weights* scale / (np.sqrt(var + 0.00001))
+
+I have kept the Batch normalisation layers in the model for training purpose. By defaut, the corresponding parameters are not applicable (weight = 1 and bias = 0) but they are updated if you train the model.
 
 As these parameters as stored in the Caffe mode, I have applied several transformation to map the TF requirements.
 
@@ -132,35 +136,38 @@ As these parameters as stored in the Caffe mode, I have applied several transfor
 The model is saved in a h5 file after building it and computing the weights.
 
 ## 4. Load the model
-The model previously saved is loaded from the h5 file and then ready to be used.
+The model previously saved is loaded from the h5 file.
 
-## 5. Get the Pascal VOC dataset
+## 5. Freeze the backbone
+You need to define until which layer you want to freese the modle. To free the backbone Yolo v4, set fine_tune_at = "convn_136"
+
+## 6. Get the Pascal VOC dataset
 I have used the Pascal VOC dataset to train the model.
 
 You can find the dataset here: https://pjreddie.com/projects/pascal-voc-dataset-mirror/ in order to get the images and the corresponding annotations in xml format.
 
-## 5. Build the labels files for VOC train dataset
+## 7. Build the labels files for VOC train dataset
 One label file per image and per box is created (3 boxes are defined in Yolo4).
 
 The label file contains the position and the size of the box, the probability to find an object in the box and the class id of the object.
 
 This file contains one line per object in the image.
 
-## 6. Build the labels files for VOC validate dataset
+## 8. Build the labels files for VOC validate dataset
 Same thing than above but for the dataset used to validate the training.
 
-## 7. Compute the data for training
+## 9. Compute the data for training
 Train data are created based on the Label files previously created and the images.
 
 You can define how many data do you want to train.
 
-## 8. Compute the data for validation
+## 10. Compute the data for validation
 Same thing than above but for the data used to validate the training.
 
-## 9. Choose the optimizer
+## 11. Choose the optimizer
 Several optimizers are available in Tensorflow: SGD, RMSprop, Adam...
 
-## 10. Fit the model including validation data
+## 12. Fit the model including validation data
 Fit the model using all the Tensorflow features you want.
 
 Warning: Training can takes a lot of time if you train a huge number of data!
