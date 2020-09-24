@@ -1,7 +1,7 @@
 # Yolo v4 and Yolo v3 Tiny
 Yolo v4 & Yolo v3 Tiny using TensorFlow 2.x
 
-This Tensorflow adaptation of the release 4 of the famous deep network Yolo is based on the original Yolo source code in C++ that you can find here: https://github.com/pjreddie/darknet and https://github.com/AlexeyAB/darknet
+This Tensorflow adaptation of the release 4 of the famous deep network Yolo is based on the original Yolo source code in C++ that you can find here: https://github.com/pjreddie/darknet and https://github.com/AlexeyAB/darknet + the WIKI https://github.com/AlexeyAB/darknet/wiki
 
 The method to adapt this deep network is based on the method used by *Jason Brownlee* for the previous release v3 and presented here https://machinelearningmastery.com/how-to-perform-object-detection-with-yolov3-in-keras/
 
