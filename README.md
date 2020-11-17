@@ -190,19 +190,21 @@ All the steps are included in the jupyter notebooks  **YoloV3-tiny_tf.ipynb** an
 
 # The steps to create your own data for training a model are the following (in progress...)
 ## 1. Get the images
-You can get the images img_nnn.jpg from your own collection of from the web.
+You can get the images img_nnn.jpg from your own collection or from the web.
+
 I use the plug-in *Fatkun Batch* in Chrome to upload in one click a batch of images found with google.
 
 ## 2. Label the images
-Labeling the images by drawing in each image the contours of the object to detect with a rectangle and by naming the object.
-I use the python program *labelImg.py* to do this operation for each image. This program is able to store for each image the annotations (rectangle position + label) in different formats: PASCAL_VOC (img_nnn.xml), YOLO (img_nnn.txt) or CREATE_ML (img_nnn.json)
+I label each image retreived previously  by drawing in each image the contour with a rectangle of the object to detect and by writting its label.
+
+I use the python program *labelImg.py* to do this operation for each image. This program stores for each image the annotations (rectangle position + label) in different formats: PASCAL_VOC (img_nnn.xml), YOLO (img_nnn.txt) or CREATE_ML (img_nnn.json)
 
 ## 3. Convert the annotations
-The annotations files in xml for each images are grouped in one image_labels.csv file using the python tool *xml_to_csv.py*.
-This file contains a row per images with filename,width,height,class,xmin,ymin,xmax,ymax.
+The annotation xml files produced previously for each image are grouped in one single image_labels.csv file using the python tool *xml_to_csv.py*.
+This file contains a row per image with filename,width,height,class,xmin,ymin,xmax,ymax.
 
 ## 4. Generate the TensorFlow records
-The last operation is to write records to a TFRecords file train.record. TFRecords is a binary format which is optimized for high throughput data retrieval writing serialized examples to a file.
-I use the python program *generate_tfrecord.py* to perform this operation
+The last operation is to write records to a TFRecords file train.record based on the infos previously build (images + annotations). TFRecords is a binary format which is optimized for high throughput data retrieval writing serialized examples to a file.
+I use the python program *generate_tfrecord.py* to perform this operation with the image_labels.csv file as input.
 
 
