@@ -209,7 +209,7 @@ The file produced is named image_labels.csv and contains a row per image with fi
 ## 4. Generate the TensorFlow records
 The last operation is to write records to a TFRecords file based on the infos previously build (images + annotations). TFRecords is a binary format which is optimized for high throughput data retrieval writing serialized examples to a file.
 
-I use the python program *generate_tfrecord.py* to perform this operation. Note that you need to do a change in this program before running it because you need to define the mapping between the label names you have provided for the objects and the class number used by the model. The function to update is *class_text_to_int*
+I use the python program *generate_tfrecord.py* to perform this operation. Note that the TensorFlow class used is TFRecordWriter natively running with TF V1.xx but if you use tf V2.XX the program activates the tf compatibility module tensorflow.compat.v1. In addition, note that you need to do a change in this program before running it because you need to define the mapping between the label names you have provided for the objects and the class number used by the model. The function to update is *class_text_to_int*
 
 **python generate_tfrecord.py --csv_input=image_labels.csv --image_dir=data/images --rec_output=train.record**
 
