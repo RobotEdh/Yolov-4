@@ -200,12 +200,19 @@ I label each image retreived previously  by drawing in each image the contour wi
 I use the python program *labelImg.py* to do this operation for each image. This program stores for each image the annotations (rectangle position + label) in different formats: PASCAL_VOC (img_nnn.xml), YOLO (img_nnn.txt) or CREATE_ML (img_nnn.json)
 
 ## 3. Convert the annotations
-The annotation xml files produced previously for each image are grouped in one single image_labels.csv file using the python tool *xml_to_csv.py*.
-This file contains a row per image with filename,width,height,class,xmin,ymin,xmax,ymax.
+The annotation xml files produced previously for each image are grouped in one single file using the python tool *xml_to_csv.py*.
+
+**python xml_to_csv.py  --annotationsdir data/annotations**
+
+The file produced is named image_labels.csv and contains a row per image with filename,width,height,class,xmin,ymin,xmax,ymax.
 
 ## 4. Generate the TensorFlow records
-The last operation is to write records to a TFRecords file train.record based on the infos previously build (images + annotations). TFRecords is a binary format which is optimized for high throughput data retrieval writing serialized examples to a file.
+The last operation is to write records to a TFRecords file based on the infos previously build (images + annotations). TFRecords is a binary format which is optimized for high throughput data retrieval writing serialized examples to a file.
 
 I use the python program *generate_tfrecord.py* to perform this operation with the image_labels.csv file as input.
+
+**python generate_tfrecord.py --csv_input=image_labels.csv --image_dir=data/images --rec_output=train.record**
+
+
 
 
