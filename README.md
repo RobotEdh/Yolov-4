@@ -205,6 +205,7 @@ This file contains a row per image with filename,width,height,class,xmin,ymin,xm
 
 ## 4. Generate the TensorFlow records
 The last operation is to write records to a TFRecords file train.record based on the infos previously build (images + annotations). TFRecords is a binary format which is optimized for high throughput data retrieval writing serialized examples to a file.
+
 I use the python program *generate_tfrecord.py* to perform this operation with the image_labels.csv file as input.
 
 
