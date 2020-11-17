@@ -186,3 +186,23 @@ Tiny release of Yolo V3 using TensorFlow 2.x
 Same logic than Yolo v4 but with only 26 layers and 2 output layers.
 
 All the steps are included in the jupyter notebooks  **YoloV3-tiny_tf.ipynb** and **YoloV3-tiny_Train_tf.ipynb**
+
+
+# The steps to create your own data for training a model are the following (in progress...)
+## 1. Get the images
+You can get the images img_nnn.jpg from your own collection of from the web.
+I use the plug-in *Fatkun Batch* in Chrome to upload in one click a batch of images found with google.
+
+## 2. Label the images
+Labeling the images by drawing in each image the contours of the object to detect with a rectangle and by naming the object.
+I use the python program *labelImg.py* to do this operation for each image. This program is able to store for each image the annotations (rectangle position + label) in different formats: PASCAL_VOC (img_nnn.xml), YOLO (img_nnn.txt) or CREATE_ML (img_nnn.json)
+
+## 3. Convert the annotations
+The annotations files in xml for each images are grouped in one image_labels.csv file using the python tool *xml_to_csv.py*.
+This file contains a row per images with filename,width,height,class,xmin,ymin,xmax,ymax.
+
+## 4. Generate the TensorFlow records
+The last operation is to write records to a TFRecords file train.record. TFRecords is a binary format which is optimized for high throughput data retrieval writing serialized examples to a file.
+I use the python program *generate_tfrecord.py* to perform this operation
+
+
