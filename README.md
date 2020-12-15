@@ -203,7 +203,7 @@ Before running this program, you need first to install PyQt5 and lxml
 - pip install PyQt5
 - pip install lxml
 
-Then run *python labelImg.py* in the directory create_own_data/labelImg-master and store the annotations (xml files), in the same directory than your images (jpg files).
+Then run *python labelImg.py* in the directory *create_own_data/labelImg-master* and store the annotations (xml files), in the same directory than your images (jpg files).
 
 
 ## 3. Convert the annotations
