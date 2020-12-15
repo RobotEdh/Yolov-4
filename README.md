@@ -195,23 +195,22 @@ You can get the images img_nnn.jpg from your own collection or from the web.
 I use the plug-in *Fatkun Batch* in Chrome to upload in one click a batch of images found with google.
 
 ## 2. Label the images
-I label each image retreived previously  by drawing in each image the contour with a rectangle of the object to detect and by writting its label.
+I label each image retreived previously by drawing in each image the contour with a rectangle of the object to detect and by writting its label.
 
 I use the python program *labelImg.py* to do this operation for each image. This program stores for each image the annotations (rectangle position + label) in different formats: PASCAL_VOC (img_nnn.xml), YOLO (img_nnn.txt) or CREATE_ML (img_nnn.json)
 
 ## 3. Convert the annotations
-The annotation xml files produced previously for each image are grouped in one single file using the python tool *xml_to_csv.py*.
+The multiple annotation xml files produced previously for each image are grouped in one single file named image_labels.csv.
 
-**python xml_to_csv.py  --annotationsdir data/annotations**
-
-The file produced is named image_labels.csv and contains a row per image with filename,width,height,class,xmin,ymin,xmax,ymax.
+This file contains a row per image with filename,width,height,class,xmin,ymin,xmax,ymax.
 
 ## 4. Generate the TensorFlow records
 The last operation is to write records to a TFRecords file based on the infos previously build (images + annotations). TFRecords is a binary format which is optimized for high throughput data retrieval writing serialized examples to a file.
 
-I use the python program *generate_tfrecord.py* to perform this operation. Note that the TensorFlow class used is TFRecordWriter natively running with TF V1.xx but if you use tf V2.XX the program activates the tf compatibility module tensorflow.compat.v1. In addition, note that you need to do a change in this program before running it because you need to define the mapping between the label names you have provided for the objects and the class number used by the model. The function to update is *class_text_to_int*
+Note that the TensorFlow class used is TFRecordWriter natively running with TF V1.xx but if you use tf V2.XX then the program activates the tf compatibility module tensorflow.compat.v1.
 
-**python generate_tfrecord.py --csv_input=image_labels.csv --image_dir=data/images --rec_output=train.record**
+In addition, note that you need to do a change in this program before running it because you need to define the mapping between the label names you have provided for the objects and the class number used by the model. The function to update is *class_text_to_int*
+
 
 
 
